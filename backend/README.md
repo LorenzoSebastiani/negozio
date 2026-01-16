@@ -1,6 +1,6 @@
 ## BACKEND ##
 
-## VERSIONE USATA ##
+## VERSIONE NODE USATA ##
 
 23.10.0
 
@@ -19,3 +19,8 @@
 `\connect negozio_online`
 
 `GRANT ALL ON SCHEMA public TO negozio_online_user;`
+
+## CREAZIONE MIGRATIONS ##
+
+
+- **Creazione Migrazione**: `npm run typeorm migration:create ./db/migrations/<nome_migrazione>`
