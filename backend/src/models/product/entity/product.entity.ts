@@ -15,7 +15,7 @@ export class Product {
     @Column({ type: 'varchar', nullable: false, default: '1' })
     price: string;
 
-    @Column({ type: 'string', nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     photo_path?: string;
 
     @Column({ type: 'enum', nullable: false, enum: ProductCategoriesEnum })
