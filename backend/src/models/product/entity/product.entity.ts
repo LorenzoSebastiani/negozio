@@ -12,7 +12,7 @@ export class Product {
     @Column({ type: 'int', nullable: false, default: 1 })
     quantity: number;
 
-    @Column({ type: 'string', nullable: false, default: 1 })
+    @Column({ type: 'varchar', nullable: false, default: '1' })
     price: string;
 
     @Column({ type: 'string', nullable: true })
