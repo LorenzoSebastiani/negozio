@@ -58,7 +58,8 @@ export class ProductService {
     //? PATCH
     async patch(id: number, body: PatchProductDto) {
         try {
-            return await this.repository.update(id, body);
+            const res = await this.repository.update(id, body);
+            return res;
         } catch (error) {
             console.error(error, 400);
             return;

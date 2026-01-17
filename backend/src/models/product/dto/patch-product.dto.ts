@@ -21,7 +21,7 @@ export class PatchProductDto {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    photo_path: string;
+    photo_path?: string;
 
     @ApiProperty()
     @IsString()
