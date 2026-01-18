@@ -1,5 +1,6 @@
 import { RoleEnum } from "src/enum/role.enum";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Address } from "src/models/address/entity/address.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('user')
 export class User {
@@ -19,5 +20,9 @@ export class User {
     password: string
 
     @Column({ type: 'enum', enum: RoleEnum, default: [RoleEnum.CUSTOMER] })
-    roles: RoleEnum
+    role: RoleEnum
+
+    //? Relazioni inverse
+    @OneToMany(() => Address, address => address.user)
+    addresses: Address[];
 }

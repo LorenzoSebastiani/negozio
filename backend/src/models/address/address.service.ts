@@ -15,7 +15,7 @@ export class AddressService {
     //? GET
     async findAll() {
         try {
-            const res = await this.repository.find();
+            const res = await this.repository.find({ relations: ['user'] });
 
             if (!res) {
                 console.error("Nessun indirizzo trovato", 400);
@@ -32,7 +32,7 @@ export class AddressService {
     //? GET
     async findByUser(id_user: number) {
         try {
-            const res = await this.repository.find({ where: { user: { id: id_user } } });
+            const res = await this.repository.find({ where: { user: { id: id_user } }, relations: ['user'] });
 
             if (!res) {
                 console.error("Nessun indirizzo trovato", 400);
@@ -49,7 +49,7 @@ export class AddressService {
     //? GET 
     async findOne(id: number) {
         try {
-            return await this.repository.findOne({ where: { id: id } })
+            return await this.repository.findOne({ where: { id: id }, relations: ['user'] })
         } catch (error) {
             console.error(error, 400)
             return
@@ -59,12 +59,14 @@ export class AddressService {
     //? POST
     async create(body: CreateAddressDto) {
         try {
-            return await this.repository.save({
-                name: body.name,
-                delivery_address: body.delivery_address,
-                other_info: body.other_info,
-                user: { id: body.user }
-            });
+            const res = await this.repository.save(body);
+
+            if (!res) {
+                console.error("Errore durante la creazione dell'indirizzo", 400)
+                return res;
+            }
+
+            return res;
         } catch (error) {
             console.error(error, 400)
             return

@@ -18,7 +18,7 @@ export class AuthService {
             throw new UnauthorizedException("Credenziali non valide");
         }
 
-        const payload = { sub: user.id, email: user.email, roles: user.roles }
+        const payload = { sub: user.id, email: user.email, roles: user.role }
 
         return {
             access_token: this.jwtService.sign(payload)

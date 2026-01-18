@@ -7,7 +7,7 @@ export class Address {
     id: number;
 
     //? Relazioni
-    @ManyToOne(() => User, (_: User) => _.id, {
+    @ManyToOne(() => User, (_: User) => _.addresses, {
         nullable: false,
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE'

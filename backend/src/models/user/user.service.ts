@@ -16,7 +16,7 @@ export class UserService {
     //? GET
     async findAll() {
         try {
-            const res = await this.repository.find();
+            const res = await this.repository.find({ relations: ['addresses'] });
             if (!res) {
                 console.error('Nessun User Trovato', 400);
                 return res;
@@ -31,7 +31,7 @@ export class UserService {
     //? GET
     async findOne(id: number) {
         try {
-            const res = this.repository.findOne({ where: { id: id } });
+            const res = this.repository.findOne({ where: { id: id }, relations: ['addresses'] });
             if (!res) {
                 console.error(`Nessun User Trovato con id: ${id}`, 400);
                 return res;
@@ -47,7 +47,7 @@ export class UserService {
     //? GET
     async findByEmail(email: string) {
         try {
-            const res = await this.repository.findOne({ where: { email: email } });
+            const res = await this.repository.findOne({ where: { email: email }, relations: ['addresses'] });
 
             if (!res) {
                 console.error("Nessun account con l'email associata", 400);

@@ -22,7 +22,7 @@ export class AddressController {
 
     @Roles(RoleEnum.ADMIN, RoleEnum.CUSTOMER, RoleEnum.SELLER)
     @UseGuards(JwtAuthGuard, RolesGuard)
-    @Get(':id_user')
+    @Get('/user/:id_user')
     getAddressesByUser(@Param('id_user') id_user: number) {
         return this.addressService.findByUser(id_user)
     }
